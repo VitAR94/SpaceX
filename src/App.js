@@ -6,6 +6,7 @@ import Features from './components/Features/Features';
 import Footer from './components/Footer/Footer';
 
 // import Calendar from './components/Calendar/Calendar';
+// import Details from './components/Details/Details';
 
 import './style.css';
 
