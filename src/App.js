@@ -58,8 +58,8 @@ class App extends React.Component {
       <React.Fragment>
         <Header rockets={this.state.rockets} changeRocket={this.changeRocket} />
         <Main rocket={this.state.rocket} />
-        <Features {...this.state.rocketFeatures}/>
-        <Footer companyInfo={this.state.companyInfo} />
+        {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>}
+        {this.state.companyInfo && <Footer links={this.state.companyInfo.links} />}
       </React.Fragment>
     );
   }

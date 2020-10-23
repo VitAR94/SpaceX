@@ -3,14 +3,14 @@ import RelaxWrapper from 'react-rellax-wrapper';
 
 import './features.css';
 
-const video = {
+const rocketImage = {
     'Falcon 1': 'falcon-1',
     'Falcon 9': 'falcon-9',
     'Falcon Heavy': 'falcon-heavy',
     other: 'starship'
 };
 
-const Features = ({ name, height, diameter, mass,  payload_weights, description }) => (
+const Features = ({ name, height, diameter, mass,  payload_weights: pw, description }) => (
     <section className="features">
         <h2 className="features-title">
             {name} <br/>Overview
@@ -24,26 +24,28 @@ const Features = ({ name, height, diameter, mass,  payload_weights, description 
                 <thead>
                     <tr>
                         <td className="table-column">HEIGHT</td>
-                        <td className="table-column">{height ? height.meters : ""} m / {height ? height.feet : ""} ft</td>
+                        <td className="table-column">{height.meters} m / {height.feet} ft</td>
                     </tr>
                     <tr>
                         <td className="table-column">DIAMETER</td>
-                        <td className="table-column">{diameter ? diameter.meters : ""} m / {diameter ? diameter.feet : ""} ft</td>
+                        <td className="table-column">{diameter.meters} m / {diameter.feet} ft</td>
                     </tr>
                     <tr>
                         <td className="table-column">MASS</td>
-                        <td className="table-column">{mass ? mass.kg : ""} kg / {mass ? mass.lb : ""} lb</td>
+                        <td className="table-column">{mass.kg} kg / {mass.lb} lb</td>
                     </tr>
-                    <tr>
-                        <td className="table-column">PAYLOAD TO LEO</td>
-                        <td className="table-column">{payload_weights ? payload_weights[0].kg : ""} kg / {payload_weights ? payload_weights[0].lb : ""} lb</td>
-                    </tr>
+                    {pw.map(item => (
+                        <tr key={item.id}>
+                            <td className="table-column">PAYLOAD TO {item.id.toUpperCase()}</td>
+                            <td className="table-column">{item.kg} kg / {item.lb} lb</td>
+                        </tr>
+                    ))}
                 </thead>
             </table>
             <RelaxWrapper speed={14}>
                 <img
-                        src={`img/${video.hasOwnProperty(name) ? 
-                            video[name] : video.other}.png`}
+                        src={`img/${rocketImage.hasOwnProperty(name) ? 
+                            rocketImage[name] : rocketImage.other}.png`}
                         alt="rocket"
                         className="rocket"
                 />
