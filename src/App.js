@@ -49,7 +49,7 @@ class App extends React.Component {
       <React.Fragment>
         <Header rockets={this.state.rockets} changeRocket={this.changeRocket} />
         <Main rocket={this.state.rocket} />
-        <Features />
+        <Features {...this.state.rocketFeatures}/>
         <Footer />
       </React.Fragment>
     );
