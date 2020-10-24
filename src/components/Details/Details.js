@@ -4,24 +4,24 @@ import Main from '../Main/Main';
 
 import './details.css';
 
-const Details = () => (
+const Details = (props) => (
 	<>
 		<Main />
 		<main className="details">
 			<div className="container">
 				<div className="details-row">
 					<div className="details-image">
-						<img src="https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png" alt="" />
+						<img src={props.details.links.patch.small} alt="" />
 					</div>
 					<div className="details-content">
-						<p className="details-description">Engine failure at 33 seconds and loss of vehicle</p>
+						<p className="details-description">{props.details.details}</p>
 					</div>
 				</div>
 				<div>
-					<iframe className="details-youtube" width="560" height="315" src="https://www.youtube.com/embed/dLQ2tZEH6G0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
+					<iframe className="details-youtube" width="560" height="315" src={props.details.links.webcast} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
 				</div>
 			</div>
-			<a href="calendar.html" className="button button-back">go back</a>
+			<a /* onClick={props.history.goBack} */ className="button button-back">go back</a>
 		</main>    
 	</>
 );
