@@ -2,11 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header';
-import Main from './components/Main/Main';
 import Home from './components/Home/Home';
 import Features from './components/Features/Features';
 import Footer from './components/Footer/Footer';
-
 import Calendar from './components/Calendar/Calendar';
 import Details from './components/Details/Details';
 
@@ -60,21 +58,24 @@ class App extends React.Component {
       <BrowserRouter>
         <Header rockets={this.state.rockets} changeRocket={this.changeRocket} />
 
-        <Route exact path='/'>
-          {this.state.companyInfo && <Home company={this.state.companyInfo} />}
-        </Route>
+        <Route exact 
+          path='/' 
+          render={() => this.state.companyInfo && <Home company={this.state.companyInfo} />} />
 
+        {/* 
+        //такой вариант мало используют
+        // в нем не передать параметры пути
         <Route path='/rocket'>
           {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>}
-        </Route>
+        </Route> 
+        */}
+        <Route path='/rocket'
+          render={({match}) => this.state.rocketFeatures && 
+            <Features {...this.state.rocketFeatures} match={match}/>} />
 
-        <Route path='/calendar'>
-          <Calendar />
-        </Route>
+        <Route path='/calendar' component={Calendar} />
+        <Route path='/details/:id' component={Details} />
 
-        <Route path='/details'>
-          <Details />
-        </Route>
         
         {this.state.companyInfo && <Footer links={this.state.companyInfo.links} />}
       </BrowserRouter>

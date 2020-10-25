@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Main from '../Main/Main';
-import FetchData from '../../service/FetchData';
+import useLaunches from '../useLaunches/useLaunches';
 
 import './calendar.css';
 
-const fetchData = new FetchData();
 
 const Calendar = () => {
 
-	const [data, setData] = useState([]);
-
-	useEffect(() => {
-		fetchData.getLaunches()
-			.then(data => {
-				setData(data);
-			});
-	}, []);
-
-	console.log(data);
+	const { data } = useLaunches();
 
 	return (
 		<>
-			<Main />
+			<Main name={'Календарь SpaceX'}/>
 			<section className="calendar">
 				<div className="container">
 					<ul className="calendar-list">
@@ -36,7 +26,7 @@ const Calendar = () => {
 										</div>
 										<div className="launches-content">
 											<h2 className="launches-title">{it.name}</h2>
-											<Link to="/details" className="button launches-details">Подробнее</Link>
+											<Link to={`/details/${it.id}`} className="button launches-details">Подробнее</Link>
 										</div>
 									</article>
 								</li>

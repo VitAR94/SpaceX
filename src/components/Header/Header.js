@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from '../../logo.svg'
 import './header.css';
 
-const Header = (props) => (
+const Header = (props) =>  (
     <header className="header">
         <Link to='/'>
             <img
@@ -18,7 +18,7 @@ const Header = (props) => (
                 {props.rockets.map((item, idx) => (
                     <li key={idx} className="item">
                         <Link 
-                            to="/rocket" 
+                            to="/rocket"
                             onClick = {() => {
                                 props.changeRocket(item);
                             }}
