@@ -48,7 +48,7 @@ const Features = ({ name, height, diameter, mass,  payload_weights: pw, descript
                 </table>
                 <RelaxWrapper speed={14}>
                     <img
-                            src={`img/${rocketImage.hasOwnProperty(name) ? 
+                            src={`/img/${rocketImage.hasOwnProperty(name) ? 
                                 rocketImage[name] : rocketImage.other}.png`}
                             alt="rocket"
                             className="rocket"

@@ -22,6 +22,7 @@ class App extends React.Component {
     rocket: 'Falcon 1',
     rocketFeatures: null,
     rockets: [],
+    rocketsData: [],
     companyInfo: null
   };
 
@@ -40,7 +41,10 @@ class App extends React.Component {
   updateRocket() {
     this.fetchData.getRocket()
       .then(data => {
-        this.setState({rockets: data.map(item => item.name)});
+        this.setState({
+          rockets: data.map(item => item.name),
+          rocketsData: data,
+        });
         return data;
       })
       .then(data => data.find(item => item.name === this.state.rocket))
@@ -52,6 +56,10 @@ class App extends React.Component {
   changeRocket = (rocket) => {
     this.setState({ rocket }, this.updateRocket);
   };
+
+  findRocketFeature(name) {
+    return this.state.rocketsData.find(item => item.name.replace(' ', '_') === name);
+  }
 
   render() {
     return (
@@ -69,9 +77,11 @@ class App extends React.Component {
           {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>}
         </Route> 
         */}
-        <Route path='/rocket'
-          render={({match}) => this.state.rocketFeatures && 
-            <Features {...this.state.rocketFeatures} match={match}/>} />
+        <Route path='/rocket/:rocket'
+          render={({match}) => {
+            const feature = this.findRocketFeature(match.params.rocket);
+            return feature && <Features {...feature} match={match}/>
+          }} />
 
         <Route path='/calendar' component={Calendar} />
         <Route path='/details/:id' component={Details} />

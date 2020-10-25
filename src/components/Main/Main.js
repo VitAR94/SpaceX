@@ -17,7 +17,7 @@ const Main = ({ rocket, name }) => (
             <video 
                 className="video" 
                 autoPlay loop muted 
-                src={`./video/${video.hasOwnProperty(rocket) ?
+                src={`/video/${video.hasOwnProperty(rocket) ?
                     video[rocket] :
                     video.other}.mp4`
                 }
